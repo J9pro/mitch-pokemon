@@ -12,19 +12,22 @@ function getFetch() {
             let arrayOfPokemonNames = data.results.map(e => e.name)
             //console.log(arrayOfPokemonNames)
 
-
             const random = arrayOfPokemonNames[Math.floor(Math.random() * 21)]
             //console.log(random)
 
 
-            const li = document.createElement('li')
-            li.textContent = random
-            document.querySelector('ul').appendChild(li)
+            const li = document.createElement('li');
+            li.className = 'foo'
 
-            // li.toggleAttribute('disabled')
+            li.textContent = random;
+            const newz = document.querySelector('ul').appendChild(li)
 
 
 
+
+
+            // const result = li.setAttribute('li');
+            // console.log(result)
 
 
 
@@ -35,12 +38,21 @@ function getFetch() {
         });
 }
 
+document.querySelector('.foo')
 
+
+
+
+
+
+// document.getElementsByName('li').addEventListener("click", clear);
+// // there is no Li to access since it was created in the DOM
 // function clear() {
-//     let list = document.getElementById('li')
-//     list.removeChild.childN
+//     document.getElementsByName('li').classList.toggle('done');
 // }
 
+
+//use previousElementSibling
 
 
 
