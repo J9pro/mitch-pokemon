@@ -1,61 +1,82 @@
-const btn = document.getElementById('btn').addEventListener("click", getFetch)
+// const btn = document.getElementById('btn')
+// btn.addEventListener("click", function () {
+//     getFetch(1);
+// })
 
-function getFetch() {
+// function getFetch(x) { //number of results we want displayed
 
-    const url = 'https://pokeapi.co/api/v2/pokemon?limit=20/'
+//     const random = Math.floor(Math.random() * 21)
+//     for (let i = 1; i <= x; i++) {
+//         fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
 
-    fetch(url)
-        .then(res => res.json()) // parse response as JSON
+//             .then(res => res.json())
 
-        .then(data => {
+//             .then(data => {
+//                 console.log(data)
+//                 const name = data.name
+//                 const img = data.sprites.front_default
 
-            let arrayOfPokemonNames = data.results.map(e => e.name)
-            //console.log(arrayOfPokemonNames)
+//                 const li = document.createElement('li');
+//                 const image = document.createElement('img');
+//                 li.className = 'foo'
 
-            const random = arrayOfPokemonNames[Math.floor(Math.random() * 21)]
-            //console.log(random)
+//                 image.src = img
+//                 li.textContent = name;
 
+//                 document.querySelector('ul').innerHTML = ''
 
-            const li = document.createElement('li');
-            li.className = 'foo'
-
-            li.textContent = random;
-            const newz = document.querySelector('ul').appendChild(li)
-
-
-
-
-
-            // const result = li.setAttribute('li');
-            // console.log(result)
-
+//                 li.appendChild(image)
+//                 document.querySelector('ul').appendChild(li);
 
 
+//             })
+//             .catch(err => {
+//                 console.log(`error ${err}`)
+//             });
 
-        })
-        .catch(err => {
-            console.log(`error ${err}`)
-        });
-}
-
-document.querySelector('.foo')
-
-
-
-
-
-
-// document.getElementsByName('li').addEventListener("click", clear);
-// // there is no Li to access since it was created in the DOM
-// function clear() {
-//     document.getElementsByName('li').classList.toggle('done');
+//     }
 // }
 
 
-//use previousElementSibling
+
+const btn = document.getElementById('btn');
+btn.addEventListener('click', function () {
+    getFetch(1)
+});
+
+function getFetch(x) {
+    let random = Math.floor(Math.random() * 21)
+    for (let i = 1; i <= x; i++) {
+        // const url = `https://pokeapi.co/api/v2/pokemon/${i}/`
+
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${random}/`)
+            .then(res => res.json())
+            .then(data => {
+                const name = data.name
+                const image = data.sprites.front_default
+                //console.log(name, image)
+
+                const li = document.createElement('li')
+                const img = document.createElement('img')
+                //console.log(img)
+                li.textContent = name
+                img.src = image
+                li.style.listStyle = 'none'
+
+                document.querySelector('ul').textContent = ''
+
+                document.querySelector('ul').appendChild(li)
+                li.appendChild(img)
+
+
+            })
+    }
+}
 
 
 
-//need to hide previous list item when click button.
-//need to remove list styles
-//add fetch images
+
+
+
+
